@@ -18,7 +18,7 @@ This Python script is a general-purpose command-line interface (CLI) for interac
 **General Syntax:**
 
 ```bash
-python jvl_util.py [global options] <command> [command-specific arguments]
+python cli.py [global options] <command> [command-specific arguments]
 ```
 
 **Global Options:**
@@ -41,7 +41,7 @@ Lists all registers defined within the script, along with their JVL number, name
 **Syntax:**
 
 ```bash
-python jvl_util.py list [filter_string]
+python cli.py list [filter_string]
 ```
 
 *   `filter_string` (optional): A case-insensitive string to filter the register list by name or JVL number.
@@ -49,10 +49,10 @@ python jvl_util.py list [filter_string]
 **Examples:**
 
 ```bash
-python jvl_util.py list
-python jvl_util.py list MODE
-python jvl_util.py list ERR_STAT
-python jvl_util.py list 35
+python cli.py list
+python cli.py list MODE
+python cli.py list ERR_STAT
+python cli.py list 35
 ```
 
 ### `read`
@@ -62,15 +62,15 @@ Reads the current value(s) from one or more specified registers.
 **Syntax:**
 
 ```bash
-python jvl_util.py -i <ip_address> read <register_name_or_num> [register_name_or_num_2 ...]
+python cli.py -i <ip_address> read <register_name_or_num> [register_name_or_num_2 ...]
 ```
 
 **Examples:**
 
 ```bash
-python jvl_util.py -i 192.168.1.10 read MODE_REG
-python jvl_util.py -i 192.168.1.10 read P_IST V_IST_16 ERR_STAT
-python jvl_util.py -i 192.168.1.10 read 35 # Read register with JVL number 35 (ERR_STAT)
+python cli.py -i 192.168.1.10 read MODE_REG
+python cli.py -i 192.168.1.10 read P_IST V_IST_16 ERR_STAT
+python cli.py -i 192.168.1.10 read 35 # Read register with JVL number 35 (ERR_STAT)
 ```
 The output will show the raw numerical value and, if a `value_map` is defined for the register (like for `MODE_REG` or `ERR_STAT`), an interpretation of that value (e.g., mode name or active error bits).
 
@@ -83,14 +83,14 @@ Writes a specified value to a single motor register.
 **Syntax:**
 
 ```bash
-python jvl_util.py -i <ip_address> write <register_name_or_num> <value>
+python cli.py -i <ip_address> write <register_name_or_num> <value>
 ```
 
 **Examples:**
 
 ```bash
 # Write raw value 1 to MODE_REG (JVL Reg 2) - equivalent to 'mode VELOCITY'
-python jvl_util.py -i 192.168.1.10 write MODE_REG 1
+python cli.py -i 192.168.1.10 write MODE_REG 1
 ```
 
 ### `mode`
@@ -100,7 +100,7 @@ Sets the motor to a predefined operating mode. This is a convenience wrapper aro
 **Syntax:**
 
 ```bash
-python jvl_util.py -i <ip_address> mode <MODE_NAME>
+python cli.py -i <ip_address> mode <MODE_NAME>
 ```
 
 *   `<MODE_NAME>`: One of the modes defined in the script (e.g., `PASSIVE`, `VELOCITY`, `POSITION`). Case-insensitive.
@@ -108,8 +108,8 @@ python jvl_util.py -i <ip_address> mode <MODE_NAME>
 **Example:**
 
 ```bash
-python jvl_util.py -i 192.168.1.10 mode VELOCITY
-python jvl_util.py -i 192.168.1.10 mode PASSIVE
+python cli.py -i 192.168.1.10 mode VELOCITY
+python cli.py -i 192.168.1.10 mode PASSIVE
 ```
 
 ### `watch`
@@ -119,7 +119,7 @@ Continuously polls and displays the values of specified registers. Press `Ctrl+C
 **Syntax:**
 
 ```bash
-python jvl_util.py -i <ip_address> watch <register_name_or_num> [register_name_or_num_2 ...] [--rate <seconds>]
+python cli.py -i <ip_address> watch <register_name_or_num> [register_name_or_num_2 ...] [--rate <seconds>]
 ```
 
 *   `--rate <seconds>` (optional): The polling interval in seconds. (Default: 1.0)
@@ -127,8 +127,8 @@ python jvl_util.py -i <ip_address> watch <register_name_or_num> [register_name_o
 **Examples:**
 
 ```bash
-python jvl_util.py -i 192.168.1.10 watch P_IST V_IST_16 ERR_STAT
-python jvl_util.py -i 192.168.1.10 watch MODE_REG --rate 0.2
+python cli.py -i 192.168.1.10 watch P_IST V_IST_16 ERR_STAT
+python cli.py -i 192.168.1.10 watch MODE_REG --rate 0.2
 ```
 
 ### `reset`
@@ -139,7 +139,7 @@ Sends a "Reset Motor" command. The specific Modbus register and value for this c
 **Syntax:**
 
 ```bash
-python jvl_util.py -i <ip_address> reset
+python cli.py -i <ip_address> reset
 ```
 
 ### `save`
@@ -150,7 +150,7 @@ Sends a "Save Configuration to Flash" command. The specific Modbus register and 
 **Syntax:**
 
 ```bash
-python jvl_util.py -i <ip_address> save
+python cli.py -i <ip_address> save
 ```
 
 ## Register Definitions
