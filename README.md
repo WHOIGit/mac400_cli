@@ -176,3 +176,9 @@ You can extend this dictionary in the script to support more registers specific 
 ## Disclaimer
 
 This script is provided for utility and educational purposes. The author(s) are not responsible for any damage to equipment or other issues that may arise from its use. Always test thoroughly in a non-critical environment first.
+
+## License
+
+Copyright (C) 2025 Woods Hole Oceanographic Institution
+
+This program is licensed under the GNU General Public License v3.0. See [LICENSE](LICENSE) for details.
